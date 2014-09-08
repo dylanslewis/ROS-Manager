@@ -79,8 +79,6 @@
 		FCE2EEBA19BDEC0100B8E354 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				FCE2EEBF19BDEC0100B8E354 /* AppDelegate.h */,
-				FCE2EEC019BDEC0100B8E354 /* AppDelegate.m */,
 				FCE2EEC219BDEC0100B8E354 /* ViewController.h */,
 				FCE2EEC319BDEC0100B8E354 /* ViewController.m */,
 				FCE2EEC519BDEC0100B8E354 /* Main.storyboard */,
@@ -93,6 +91,8 @@
 		FCE2EEBB19BDEC0100B8E354 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FCE2EEBF19BDEC0100B8E354 /* AppDelegate.h */,
+				FCE2EEC019BDEC0100B8E354 /* AppDelegate.m */,
 				FCE2EEBC19BDEC0100B8E354 /* Info.plist */,
 				FCE2EEBD19BDEC0100B8E354 /* main.m */,
 			);
