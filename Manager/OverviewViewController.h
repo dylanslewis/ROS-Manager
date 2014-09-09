@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  OverviewViewController.h
 //  Manager
 //
 //  Created by Dylan Lewis on 08/09/2014.
@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface ViewController : UIViewController
-
+@interface OverviewViewController : PFQueryTableViewController
 
 @end
-
