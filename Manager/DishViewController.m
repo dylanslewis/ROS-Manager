@@ -7,6 +7,9 @@
 //
 
 #import "DishViewController.h"
+#import "DishTableViewCell.h"
+#import "AddDishViewController.h"
+#import "EditDishViewController.h"
 
 @interface DishViewController ()
 
@@ -36,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queryForTable) name:@"addedDish" object:nil];
+    
     self.title = [_currentCourse objectForKey:@"name"];
 }
 
@@ -45,7 +50,7 @@
     
     // If there is no user logged in, return to the login screen.
     if (!user) {
-        [self performSegueWithIdentifier:@"logoutUser" sender:nil];
+        [self performSegueWithIdentifier:@"logoutUserSegue" sender:nil];
     }
 }
 
@@ -58,67 +63,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Button handling
-
-- (IBAction)touchAddDishButton:(id)sender {
-    [self displayTextInputAlertWithTitle:@"Create new dish" withMessage:@"Enter the name of the dish you would like to create" withPlaceholder:@"dish name"];
-}
-
-
-#pragma mark - Alert view handling
-
-- (void)displayTextInputAlertWithTitle:(NSString *)title withMessage:(NSString *)message withPlaceholder:(NSString *)placeholder {
-    _alertView=[[UIAlertView alloc] initWithTitle:title
-                                          message:message
-                                         delegate:self
-                                cancelButtonTitle:@"Cancel"
-                                otherButtonTitles:@"Create", nil];
-    [_alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    
-    UITextField *textField = [_alertView textFieldAtIndex:0];
-    textField.placeholder = placeholder;
-    
-    // Validate inputs: only allow numbers.
-    textField.keyboardType = UIKeyboardTypeDefault;
-    textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    
-    // Display the alert.
-    [_alertView show];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if ([alertView.title isEqualToString:@"Create new dish"]) {
-        if (buttonIndex==1) {
-            // Create the new order with the current time as orderDate.
-            NSString *dishName = [_alertView textFieldAtIndex:0].text;
-            
-            [self createNewDishWithName:dishName];
-        }
-    }
-}
-
 
 #pragma mark - Parse
-
-- (void)createNewDishWithName:(NSString *)name {
-    // Create the post
-    PFObject *object = [PFObject objectWithClassName:self.parseClassName];
-    object[@"name"] = name;
-    
-    // Relate this new object to this scene's current object.
-    object[@"ofCourse"] = _currentCourse;
-    
-    // Add ACL permissions for added security.
-    PFACL *acl = [PFACL ACLWithUser:[PFUser currentUser]];
-    [object setACL:acl];
-    
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        // Refresh the table when the object is done saving.
-        [self loadObjects];
-    }];
-}
-
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
@@ -170,15 +116,68 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+- (DishTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIdentifier = @"dishCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DishTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell
-    cell.textLabel.text = [object objectForKey:@"name"];
+    cell.dishNameLabel.text = [object objectForKey:@"name"];
+    
+    if ([[object[@"options"] allKeys] count]>0) {
+        [cell.dishOptionsLabel setHidden:NO];
+        [cell.fromLabel setHidden:NO];
+        
+        // This is when the dish has options.
+        NSDictionary *options = [[NSDictionary alloc] initWithDictionary:object[@"options"]];
+        
+        NSNumber *lowestPrice = @-1;
+        
+        // Find the lowest priced option.
+        for (NSString *option in [options allKeys]) {
+            NSNumber *currentOptionPrice = [options valueForKey:option];
+            
+            if ([lowestPrice doubleValue] == -1) {
+                lowestPrice = currentOptionPrice;
+            } else if ([currentOptionPrice doubleValue] < [lowestPrice doubleValue]) {
+                lowestPrice = currentOptionPrice;
+            }
+        }
+        
+        cell.dishPriceLabel.text = [NSString stringWithFormat:@"£%@", lowestPrice];;
+        
+        cell.dishOptionsLabel.text = [NSString stringWithFormat:@"%lu options", (unsigned long)[[object[@"options"] allKeys] count]];
+    } else {
+        [cell.dishOptionsLabel setHidden:YES];
+        [cell.fromLabel setHidden:YES];
+        
+        cell.dishPriceLabel.text = [NSString stringWithFormat:@"£%@", [object objectForKey:@"price"]];
+    }
     
     return cell;
+}
+
+#pragma mark - Navigation
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    // This stops the button automatically logging out the user, without checking confirmation.
+    if ([identifier isEqualToString:@"logoutUserSegue"]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"addDish"]) {
+        AddDishViewController *vc = (AddDishViewController *)[[segue destinationViewController] topViewController];
+        [vc setCourseForDish:_currentCourse];
+    } else if ([[segue identifier] isEqualToString:@"editDishSegue"]) {
+        EditDishViewController *vc = (EditDishViewController *)[segue destinationViewController];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        [vc setCurrentDish:[[self objects] objectAtIndex:[indexPath row]]];
+    }
 }
 
 @end

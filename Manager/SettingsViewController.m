@@ -20,8 +20,6 @@
 
 @implementation SettingsViewController
 
-
-
 #pragma mark - Setup
 
 - (void)viewDidLoad {
@@ -44,7 +42,7 @@
     
     // If there is no user logged in, return to the login screen.
     if (!user) {
-        [self performSegueWithIdentifier:@"logoutUser" sender:nil];
+        [self performSegueWithIdentifier:@"logoutUserSegue" sender:nil];
     }
 }
 

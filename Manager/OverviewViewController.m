@@ -39,7 +39,7 @@
     
     // If there is no user logged in, return to the login screen.
     if (!user) {
-        [self performSegueWithIdentifier:@"logoutUser" sender:nil];
+        [self performSegueWithIdentifier:@"logoutUserSegue" sender:nil];
     }
 }
 
@@ -95,6 +95,8 @@
     return cell;
 }
 
+#pragma mark - Navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"segue"]) {
         // Retrieve the PFObject from the cell.
@@ -104,6 +106,14 @@
         // Pass the PFObject to the next scene.
         //[[segue destinationViewController] setCurrentObject:currentObject];
     }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    // This stops the button automatically logging out the user, without checking confirmation.
+    if ([identifier isEqualToString:@"logoutUserSegue"]) {
+        return NO;
+    }
+    return YES;
 }
 
 

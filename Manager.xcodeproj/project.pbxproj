@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC91486E19D1B623008E1343 /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91486D19D1B623008E1343 /* AddCourseViewController.m */; };
+		FC91487119D1BBE9008E1343 /* CourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487019D1BBE9008E1343 /* CourseTableViewCell.m */; };
+		FC91487419D1C338008E1343 /* AddDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487319D1C338008E1343 /* AddDishViewController.m */; };
+		FC91487719D1C3D4008E1343 /* DishTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487619D1C3D4008E1343 /* DishTableViewCell.m */; };
+		FC91487A19D42303008E1343 /* DishOptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487919D42303008E1343 /* DishOptionTableViewCell.m */; };
+		FCAE169C19E2C320002C698F /* EditDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE169B19E2C320002C698F /* EditDishViewController.m */; };
+		FCCF931419DEC2D500C2F3F2 /* UIColor+ApplicationColours.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCF931319DEC2D500C2F3F2 /* UIColor+ApplicationColours.m */; };
 		FCE2EEBE19BDEC0100B8E354 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EEBD19BDEC0100B8E354 /* main.m */; };
 		FCE2EEC119BDEC0100B8E354 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EEC019BDEC0100B8E354 /* AppDelegate.m */; };
 		FCE2EEC719BDEC0100B8E354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE2EEC519BDEC0100B8E354 /* Main.storyboard */; };
@@ -30,6 +37,7 @@
 		FCE2EF0619BDEF7D00B8E354 /* DishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EF0519BDEF7D00B8E354 /* DishViewController.m */; };
 		FCE2EF0A19BDEFE800B8E354 /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EF0919BDEFE800B8E354 /* OverviewViewController.m */; };
 		FCE2EF1119BF42F600B8E354 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EF1019BF42F600B8E354 /* SettingsViewController.m */; };
+		FCE2EF1519BF609200B8E354 /* WaiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EF1419BF609200B8E354 /* WaiterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +51,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC91486C19D1B623008E1343 /* AddCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCourseViewController.h; sourceTree = "<group>"; };
+		FC91486D19D1B623008E1343 /* AddCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCourseViewController.m; sourceTree = "<group>"; };
+		FC91486F19D1BBE9008E1343 /* CourseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseTableViewCell.h; sourceTree = "<group>"; };
+		FC91487019D1BBE9008E1343 /* CourseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseTableViewCell.m; sourceTree = "<group>"; };
+		FC91487219D1C338008E1343 /* AddDishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDishViewController.h; sourceTree = "<group>"; };
+		FC91487319D1C338008E1343 /* AddDishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDishViewController.m; sourceTree = "<group>"; };
+		FC91487519D1C3D4008E1343 /* DishTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishTableViewCell.h; sourceTree = "<group>"; };
+		FC91487619D1C3D4008E1343 /* DishTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishTableViewCell.m; sourceTree = "<group>"; };
+		FC91487819D42303008E1343 /* DishOptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishOptionTableViewCell.h; sourceTree = "<group>"; };
+		FC91487919D42303008E1343 /* DishOptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishOptionTableViewCell.m; sourceTree = "<group>"; };
+		FCAE169A19E2C320002C698F /* EditDishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDishViewController.h; sourceTree = "<group>"; };
+		FCAE169B19E2C320002C698F /* EditDishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDishViewController.m; sourceTree = "<group>"; };
+		FCCF931219DEC2D500C2F3F2 /* UIColor+ApplicationColours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ApplicationColours.h"; sourceTree = "<group>"; };
+		FCCF931319DEC2D500C2F3F2 /* UIColor+ApplicationColours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ApplicationColours.m"; sourceTree = "<group>"; };
 		FCE2EEB819BDEC0100B8E354 /* Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE2EEBC19BDEC0100B8E354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCE2EEBD19BDEC0100B8E354 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -77,6 +99,8 @@
 		FCE2EF0919BDEFE800B8E354 /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
 		FCE2EF0F19BF42F600B8E354 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FCE2EF1019BF42F600B8E354 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		FCE2EF1319BF609200B8E354 /* WaiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaiterViewController.h; sourceTree = "<group>"; };
+		FCE2EF1419BF609200B8E354 /* WaiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaiterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +133,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC91487B19D42312008E1343 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				FCE2EF0119BDEECF00B8E354 /* CourseViewController.h */,
+				FCE2EF0219BDEECF00B8E354 /* CourseViewController.m */,
+				FC91486F19D1BBE9008E1343 /* CourseTableViewCell.h */,
+				FC91487019D1BBE9008E1343 /* CourseTableViewCell.m */,
+				FC91486C19D1B623008E1343 /* AddCourseViewController.h */,
+				FC91486D19D1B623008E1343 /* AddCourseViewController.m */,
+			);
+			name = Course;
+			sourceTree = "<group>";
+		};
+		FC91487C19D4231E008E1343 /* Dish */ = {
+			isa = PBXGroup;
+			children = (
+				FCE2EF0419BDEF7D00B8E354 /* DishViewController.h */,
+				FCE2EF0519BDEF7D00B8E354 /* DishViewController.m */,
+				FCAE169A19E2C320002C698F /* EditDishViewController.h */,
+				FCAE169B19E2C320002C698F /* EditDishViewController.m */,
+				FC91487519D1C3D4008E1343 /* DishTableViewCell.h */,
+				FC91487619D1C3D4008E1343 /* DishTableViewCell.m */,
+				FC91487219D1C338008E1343 /* AddDishViewController.h */,
+				FC91487319D1C338008E1343 /* AddDishViewController.m */,
+				FC91487819D42303008E1343 /* DishOptionTableViewCell.h */,
+				FC91487919D42303008E1343 /* DishOptionTableViewCell.m */,
+			);
+			name = Dish;
+			sourceTree = "<group>";
+		};
 		FCE2EEAF19BDEC0000B8E354 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +196,8 @@
 		FCE2EEBB19BDEC0100B8E354 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FCCF931219DEC2D500C2F3F2 /* UIColor+ApplicationColours.h */,
+				FCCF931319DEC2D500C2F3F2 /* UIColor+ApplicationColours.m */,
 				FCE2EEBF19BDEC0100B8E354 /* AppDelegate.h */,
 				FCE2EEC019BDEC0100B8E354 /* AppDelegate.m */,
 				FCE2EEBC19BDEC0100B8E354 /* Info.plist */,
@@ -219,10 +275,8 @@
 		FCE2EF0719BDEF8700B8E354 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				FCE2EF0119BDEECF00B8E354 /* CourseViewController.h */,
-				FCE2EF0219BDEECF00B8E354 /* CourseViewController.m */,
-				FCE2EF0419BDEF7D00B8E354 /* DishViewController.h */,
-				FCE2EF0519BDEF7D00B8E354 /* DishViewController.m */,
+				FC91487B19D42312008E1343 /* Course */,
+				FC91487C19D4231E008E1343 /* Dish */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -241,6 +295,8 @@
 			children = (
 				FCE2EF0F19BF42F600B8E354 /* SettingsViewController.h */,
 				FCE2EF1019BF42F600B8E354 /* SettingsViewController.m */,
+				FCE2EF1319BF609200B8E354 /* WaiterViewController.h */,
+				FCE2EF1419BF609200B8E354 /* WaiterViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -294,6 +350,7 @@
 				TargetAttributes = {
 					FCE2EEB719BDEC0100B8E354 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 5D6MUHPE98;
 					};
 					FCE2EECD19BDEC0100B8E354 = {
 						CreatedOnToolsVersion = 6.0;
@@ -344,14 +401,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCAE169C19E2C320002C698F /* EditDishViewController.m in Sources */,
 				FCE2EEC119BDEC0100B8E354 /* AppDelegate.m in Sources */,
+				FC91486E19D1B623008E1343 /* AddCourseViewController.m in Sources */,
 				FCE2EF0A19BDEFE800B8E354 /* OverviewViewController.m in Sources */,
 				FCE2EEBE19BDEC0100B8E354 /* main.m in Sources */,
+				FC91487719D1C3D4008E1343 /* DishTableViewCell.m in Sources */,
 				FCE2EF1119BF42F600B8E354 /* SettingsViewController.m in Sources */,
+				FC91487119D1BBE9008E1343 /* CourseTableViewCell.m in Sources */,
 				FCE2EEFC19BDEE6800B8E354 /* SignupViewController.m in Sources */,
 				FCE2EEF919BDEE5500B8E354 /* LoginViewController.m in Sources */,
 				FCE2EF0619BDEF7D00B8E354 /* DishViewController.m in Sources */,
+				FCE2EF1519BF609200B8E354 /* WaiterViewController.m in Sources */,
+				FC91487419D1C338008E1343 /* AddDishViewController.m in Sources */,
+				FC91487A19D42303008E1343 /* DishOptionTableViewCell.m in Sources */,
 				FCE2EF0319BDEECF00B8E354 /* CourseViewController.m in Sources */,
+				FCCF931419DEC2D500C2F3F2 /* UIColor+ApplicationColours.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +531,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/dylan/Dropbox/Developer/Frameworks/parse-library-1",
@@ -473,6 +540,7 @@
 				INFOPLIST_FILE = Manager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -481,6 +549,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/dylan/Dropbox/Developer/Frameworks/parse-library-1",
@@ -488,6 +558,7 @@
 				INFOPLIST_FILE = Manager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -544,6 +615,7 @@
 				FCE2EEDA19BDEC0100B8E354 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCE2EEDB19BDEC0100B8E354 /* Build configuration list for PBXNativeTarget "ManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +624,7 @@
 				FCE2EEDD19BDEC0100B8E354 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

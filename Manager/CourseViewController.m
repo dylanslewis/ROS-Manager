@@ -8,10 +8,16 @@
 
 #import "CourseViewController.h"
 #import "DishViewController.h"
+#import "CourseTableViewCell.h"
+#import "UIColor+ApplicationColours.h"
+
 
 @interface CourseViewController ()
 
 @property (strong, nonatomic) UIAlertView *alertView;
+
+@property (strong, nonatomic) NSArray *coursesArray;
+@property (strong, nonatomic) NSMutableDictionary *coursesByType;
 
 @end
 
@@ -37,6 +43,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queryForTable) name:@"addedCourse" object:nil];
+    
+    /*
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.663 green:0.118 blue:0.137 alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+     */
+    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
@@ -46,21 +63,13 @@
     
     // If there is no user logged in, return to the login screen.
     if (!user) {
-        [self performSegueWithIdentifier:@"logoutUser" sender:nil];
+        [self performSegueWithIdentifier:@"logoutUserSegue" sender:nil];
     }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-#pragma mark - Button handling
-
-- (IBAction)touchAddCourseButton:(id)sender {
-#warning No food type handling currently, i.e. get the user to pick whether this course is for food or drink.
-    [self displayTextInputAlertWithTitle:@"Create new course" withMessage:@"Enter the name of the course you would like to create" withPlaceholder:@"course name"];
 }
 
 
@@ -85,39 +94,93 @@
     [_alertView show];
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+#pragma mark - Table view
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_coursesByType count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Get the key for this section from the dictionary.
+    NSString *key = [[_coursesByType allKeys] objectAtIndex:section];
+    
+    // Get the order item objects belonging to this key, and store in an array.
+    NSArray *coursesForKey = [_coursesByType valueForKey:key];
+    
+    return [coursesForKey count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[_coursesByType allKeys] objectAtIndex:section];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([alertView.title isEqualToString:@"Create new course"]) {
-        if (buttonIndex==1) {
-            // Create the new order with the current time as orderDate.
-            NSString *courseName = [_alertView textFieldAtIndex:0].text;
-            
-            [self createNewCourseWithName:courseName];
-        }
+    // Code for method adapted from: http://stackoverflow.com/questions/15611374/customize-uitableview-header-section
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont systemFontOfSize:14]];
+    label.textColor = [UIColor grayColor];
+    
+    NSString *string = [[_coursesByType allKeys] objectAtIndex:section];
+    
+    [label setText:string];
+    [view addSubview:label];
+    
+    // Set background colour for header.
+    [view setBackgroundColor:[UIColor whiteColor]];
+    
+    return view;
+}
+
+- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath section]==0) {
+        // This means the object is a Drink, because 'D' comes before 'F' in the alphabet.
+        return [self.objects objectAtIndex:[indexPath row]];
+    } else {
+        // This means the object is Food.
+        // Get the number of objects that are 'Drink'.
+        NSInteger numberOfDrinkObjects = [[_coursesByType valueForKey:@"Drink"] count];
+        
+        NSInteger flattenedIndex = numberOfDrinkObjects + [indexPath row];
+        
+        return [self.objects objectAtIndex:flattenedIndex];
     }
 }
 
 
 #pragma mark - Parse
 
-- (void)createNewCourseWithName:(NSString *)name {
-    PFObject *object = [PFObject objectWithClassName:self.parseClassName];
-    object[@"name"]=name;
-    
-    // Add ACL permissions for added security.
-    PFACL *acl = [PFACL ACLWithUser:[PFUser currentUser]];
-    [object setACL:acl];
-    
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        // Refresh the table when the object is done saving.
-        [self loadObjects];
-    }];
-}
-
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     
-    // This method is called every time objects are loaded from Parse via the PFQuery
+    // Create an array of all order items.
+    _coursesArray = [[NSArray alloc] initWithArray:self.objects];
+    _coursesByType = [[NSMutableDictionary alloc] init];
+    
+    // Go through the 'raw' list of order items.
+    for (NSDictionary *course in _coursesArray) {
+        // Extract course type.
+        NSString *courseType=[course valueForKey:@"type"];
+        
+        // If we don't already have this type, add it.
+        if (![[_coursesByType allKeys] containsObject:courseType]) {
+            // Create an array containing the current course item object.
+            NSMutableArray *courseItem = [[NSMutableArray alloc] initWithObjects:course, nil];
+            
+            [_coursesByType setObject:courseItem forKey:courseType];
+        } else {
+            // If the key (i.e. course type) already exists, add course to its array.
+            NSMutableArray *courseItems = [_coursesByType valueForKey:courseType];
+            [courseItems addObject:course];
+            
+            [_coursesByType setObject:courseItems forKey:courseType];
+        }
+    }
+        
+    [self.tableView reloadData];
 }
 
 - (void)objectsWillLoad {
@@ -137,22 +200,33 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
-    
-    
-    [query orderByAscending:@"name"];
+    [query orderByDescending:@"type"];
     
     return query;
 }
 
 #pragma mark - Table view
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+- (CourseTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIdentifier = @"courseCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CourseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    NSString *keyForSection = [[_coursesByType allKeys] objectAtIndex:[indexPath section]];
+    
+    PFObject *course = [[_coursesByType valueForKey:keyForSection] objectAtIndex:[indexPath row]];
     
     // Configure the cell
-    cell.textLabel.text = [object objectForKey:@"name"];
+    cell.courseNameLabel.text = [course objectForKey:@"name"];
+    
+    [cell.numberOfItemsLabel setHidden:YES];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Dish"];
+    [query whereKey:@"ofCourse" equalTo:course];
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        [cell.numberOfItemsLabel setHidden:NO];
+        cell.numberOfItemsLabel.text = [NSString stringWithFormat:@"%d items", number];
+    }];
     
     return cell;
 }
@@ -166,11 +240,18 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self loadObjects];
+        NSString *keyForSection = [[_coursesByType allKeys] objectAtIndex:[indexPath section]];
+        PFObject *course = [[_coursesByType valueForKey:keyForSection] objectAtIndex:[indexPath row]];
+        
+        [course deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self queryForTable];
         }];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -185,6 +266,14 @@
         // Pass the PFObject to the next scene.
         [[segue destinationViewController] setCurrentCourse:course];
     }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    // This stops the button automatically logging out the user, without checking confirmation.
+    if ([identifier isEqualToString:@"logoutUserSegue"]) {
+        return NO;
+    }
+    return YES;
 }
 
 @end
