@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Set correct text field attributes.
     [_dishNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [_dishNameTextField setAutocorrectionType:UITextAutocorrectionTypeYes];
     
@@ -34,6 +35,7 @@
     // Initially hide the options information.
     [dishOptionsTableView setHidden:YES];
     
+    // Display the correct image and text, depending on the type of course.
     if ([[_courseForDish valueForKey:@"type"] isEqualToString:@"Drink"]) {
         self.title = @"Add New Drink";
         [_dishNameTextField setPlaceholder:@"drink name"];
@@ -82,12 +84,13 @@
                 }];
             }];
         } else {
-            // The dish is already in the latest saved state, so do nothing.saf
+            // The dish is already in the latest saved state, so do nothing.
             [[NSNotificationCenter defaultCenter] postNotificationName:@"addedDish" object:nil];
             
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     } else {
+        // The dish hasn't been created yet, so create it with no options.
         NSString *name = [_dishNameTextField text];
         
         NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
@@ -157,6 +160,7 @@
     NSString *option = [[_currentDish[@"options"] allKeys] objectAtIndex:indexPath.row];
     NSNumber *price = [_currentDish[@"options"] valueForKey:option];
     
+    // Update labels.
     cell.dishOptionLabel.text = option;
     cell.dishPriceLabel.text = [NSString stringWithFormat:@"£%@", price];
     
@@ -191,6 +195,7 @@
 {
     if ([alertView.title isEqualToString:@"Add new option"]) {
         if (buttonIndex==1) {
+            // If the user has touched 'Create', add the new option.
             NSString *option = [[_alertView textFieldAtIndex:0] text];
             
             NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
@@ -198,8 +203,6 @@
             NSNumber *price = [nf numberFromString:[[_alertView textFieldAtIndex:1] text]];
             
             NSDictionary *options = [[NSDictionary alloc] initWithObjectsAndKeys:price, option, nil];
-            
-            #warning Only create if the user has already typed the name of the dish
             
             if (_currentDish[@"options"]) {
                 [self addNewOption:options];
@@ -227,16 +230,15 @@
     [object setACL:acl];
     
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        // Refresh the table when the object is done saving.
+        // Inform the previous view to update its data.
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addedDish" object:nil];
         
+        // Close the view.
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 
 - (void)createNewDishWithName:(NSString *)name withOptions:(NSDictionary *)option {
-    #warning this method will be incompatable with any future 'edit dish' methods, because it creates a new object.
-    
     // Create the dish object.
     PFObject *object = [PFObject objectWithClassName:@"Dish"];
     object[@"name"] = name;
@@ -252,14 +254,16 @@
     [object setACL:acl];
     
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        // Store the dish object we just created locally.
+        // Inform the previous view to update its data.
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addedDish" object:nil];
+        
+        // Update the Options table.
         [self getDishData];
     }];
 }
 
 - (void)addNewOption:(NSDictionary *)option {
-    #warning sometimes fails, no notification when it does
-    
+    // Update to the latest Dish object.
     [_currentDish fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         // Get the dish's current options.
         NSMutableDictionary *currentOptions = [[NSMutableDictionary alloc] initWithDictionary:_currentDish[@"options"]];
@@ -319,8 +323,6 @@
                 
                 [dishOptionsTableView setHidden:YES];
             }
-            
-            #warning when updating for editing, add a condition to check that there are options, and show the table as necessary.
         }
     }];
 }

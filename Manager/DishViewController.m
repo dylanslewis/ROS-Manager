@@ -39,8 +39,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Listen for changes to dish objects.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queryForTable) name:@"addedDish" object:nil];
     
+    // Set the view title as the name of the current course.
     self.title = [_currentCourse objectForKey:@"name"];
 }
 
@@ -78,10 +80,9 @@
     // This method is called before a PFQuery is fired to get more objects
 }
 
-// Override to customize what kind of query to perform on the class. The default is to query for
-// all objects ordered by createdAt descending.
+
 - (PFQuery *)queryForTable {
-    // Get all PFObjects whos 'parent' is this scene's current object.
+    // Get all Dish PFObjects whos 'parent' is the current Course.
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     [query whereKey:@"ofCourse" equalTo:_currentCourse];
     
@@ -91,6 +92,7 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
+    // Sort objects by name.
     [query orderByAscending:@"name"];
     
     return query;
@@ -107,7 +109,10 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ////
     // Consider VOIDING meals, rather than deleting them... or have a trash?
+    ////
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -124,16 +129,17 @@
     // Configure the cell
     cell.dishNameLabel.text = [object objectForKey:@"name"];
     
+    // Work out whether this dish has options.
     if ([[object[@"options"] allKeys] count]>0) {
+        // This is when the dish has options.
+        
         [cell.dishOptionsLabel setHidden:NO];
         [cell.fromLabel setHidden:NO];
         
-        // This is when the dish has options.
         NSDictionary *options = [[NSDictionary alloc] initWithDictionary:object[@"options"]];
         
-        NSNumber *lowestPrice = @-1;
-        
         // Find the lowest priced option.
+        NSNumber *lowestPrice = @-1;
         for (NSString *option in [options allKeys]) {
             NSNumber *currentOptionPrice = [options valueForKey:option];
             
@@ -144,13 +150,16 @@
             }
         }
         
+        // Update labels.
         cell.dishPriceLabel.text = [NSString stringWithFormat:@"£%@", lowestPrice];;
-        
         cell.dishOptionsLabel.text = [NSString stringWithFormat:@"%lu options", (unsigned long)[[object[@"options"] allKeys] count]];
     } else {
+        // This is when the dish has no options.
+        
         [cell.dishOptionsLabel setHidden:YES];
         [cell.fromLabel setHidden:YES];
         
+        // Update labels.
         cell.dishPriceLabel.text = [NSString stringWithFormat:@"£%@", [object objectForKey:@"price"]];
     }
     
@@ -169,13 +178,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"addDish"]) {
+        // When creating a dish, pass the currentCourse object, so that the new dish is categorised properly.
         AddDishViewController *vc = (AddDishViewController *)[[segue destinationViewController] topViewController];
         [vc setCourseForDish:_currentCourse];
     } else if ([[segue identifier] isEqualToString:@"editDishSegue"]) {
+        // When editing a dish, pass the dish object that was selected.
         EditDishViewController *vc = (EditDishViewController *)[segue destinationViewController];
-        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
         [vc setCurrentDish:[[self objects] objectAtIndex:[indexPath row]]];
     }
 }

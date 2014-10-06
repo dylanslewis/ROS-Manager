@@ -162,6 +162,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Delete the Waiter.
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

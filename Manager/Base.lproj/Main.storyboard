@@ -815,7 +815,7 @@
                                 <action selector="didTouchCancelButton:" destination="HD7-WU-y1k" id="p60-TS-ggU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="B8R-Dm-Eo6">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="B8R-Dm-Eo6">
                             <connections>
                                 <action selector="didTouchDoneButton:" destination="HD7-WU-y1k" id="ou2-Gs-ETb"/>
                             </connections>

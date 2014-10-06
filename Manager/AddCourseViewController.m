@@ -35,23 +35,28 @@
 #pragma mark - Button handling
 
 - (IBAction)didTouchCancelButton:(id)sender {
+    // Close the view
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTouchDoneButton:(id)sender {
+    // Extract information from the text fields.
     NSString *name=[_courseNameTextField text];
     NSString *type;
     
+    // Work out whether this course is for Food or Drink.
     if (_foodOrDrinkControl.selectedSegmentIndex==0) {
         type = @"Food";
     } else {
         type = @"Drink";
     }
-    
+
+    // Create the course
     [self createNewCourseWithName:name withType:type];
 }
 
 - (IBAction)didChangeFoodOrDrinkSetting:(id)sender {
+    // Update display image.
     if (_foodOrDrinkControl.selectedSegmentIndex==0) {
         [_imageView setImage:[UIImage imageNamed:@"plate-and-cutlery-red"]];
     } else {
@@ -62,6 +67,7 @@
 #pragma mark - Parse
 
 - (void)createNewCourseWithName:(NSString *)name withType:(NSString *)type {
+    // Create the course with the specified parameters.
     PFObject *object = [PFObject objectWithClassName:@"Course"];
     object[@"name"]=name;
     object[@"type"]=type;
@@ -74,6 +80,7 @@
         // Refresh the table when the object is done saving.
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addedCourse" object:nil];
         
+        // Close the view
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }

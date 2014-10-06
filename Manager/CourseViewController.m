@@ -33,9 +33,6 @@
         self.pullToRefreshEnabled = YES;
         self.paginationEnabled = NO;
         self.objectsPerPage = 25;
-        
-        // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"name";
     }
     return self;
 }
@@ -43,16 +40,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Listen for any changes to courses, and update when they occur.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queryForTable) name:@"addedCourse" object:nil];
-    
-    /*
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.663 green:0.118 blue:0.137 alpha:1.0]];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                          [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
-    [[UINavigationBar appearance] setTranslucent:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-     */
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }

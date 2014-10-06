@@ -36,8 +36,10 @@
 }
 
 - (void)configureOptionsDisplay {
+    // Work out which fields or table views to display, based on the current dish object.
     NSDictionary *currentOptions = [[NSDictionary alloc] initWithDictionary:_currentDish[@"options"]];
     
+    // Work out if the dish has options.
     if ([[currentOptions allKeys] count]>0) {
         // The dish has options.
         [_dishPriceTextField setHidden:YES];
@@ -49,6 +51,7 @@
         [dishOptionsTable setHidden:YES];
         [_dishPriceTextField setHidden:NO];
         
+        // If the dish previously had a price of -1 (i.e. it had options), make the text field blank. If not, restore the previously held price variable.
         if (![_currentDish[@"price"] isEqualToNumber:@-1]) {
             [_dishPriceTextField setText:[NSString stringWithFormat:@"%@", _currentDish[@"price"]]];
         } else {
@@ -65,6 +68,7 @@
 #pragma mark - Button handling
 
 - (IBAction)didTouchDeleteItem:(id)sender {
+    // Delete the item. Currently has no verification of deletion.
     [_currentDish deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -82,23 +86,30 @@
             _currentDish[@"price"] = price;
             
             [_currentDish saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                // Update the Dishes view.
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"addedDish" object:nil];
                 
+                // Close the current view.
                 [self dismissViewControllerAnimated:YES completion:nil];
             }];
         }];
     } else {
+        // Update the Dishes view.
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addedDish" object:nil];
         
+        
+        // Close the current view.
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 - (IBAction)didTouchAddOptionButton:(id)sender {
+    // Display an alert to get information about the new option.
     [self displayAlertWithTitle:@"Add new option" withMessage:@"Type the name and the price of the option for this dish"];
 }
 
 - (IBAction)didTouchRemoveOption:(id)sender {
+    // Get the cell that was touched and delete the key that is associated with its option.
     DishOptionTableViewCell *touchedCell = (DishOptionTableViewCell *)[[sender superview] superview];
     
     [self removeOptionKey:touchedCell.dishOptionLabel.text];
@@ -152,6 +163,7 @@
     NSString *option = [[_currentDish[@"options"] allKeys] objectAtIndex:indexPath.row];
     NSNumber *price = [_currentDish[@"options"] valueForKey:option];
     
+    // Update labels.
     cell.dishOptionLabel.text = option;
     cell.dishPriceLabel.text = [NSString stringWithFormat:@"£%@", price];
     
@@ -185,6 +197,7 @@
 {
     if ([alertView.title isEqualToString:@"Add new option"]) {
         if (buttonIndex==1) {
+            // Add the option to the dish object.
             NSString *option = [[_alertView textFieldAtIndex:0] text];
             
             NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
@@ -208,6 +221,7 @@
     // Save the new options.
     _currentDish[@"options"] = currentOptions;
     
+    // Set the dish price to -1, to signify that the dish has options.
     _currentDish[@"price"] = @-1;
     
     [_currentDish saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -219,7 +233,7 @@
 - (void)removeOptionKey:(NSString *)key {
     NSMutableDictionary *currentOptions = [[NSMutableDictionary alloc] initWithDictionary:_currentDish[@"options"]];
     
-    // Remove the object from the current dictionary.
+    // Remove the option from the current dictionary of options.
     [currentOptions removeObjectForKey:key];
     
     // Save the new options.
@@ -241,6 +255,7 @@
             // Store the object locally.
             _currentDish = [dishResults firstObject];
             
+            // Update UI.
             [self configureOptionsDisplay];
         }
     }];
