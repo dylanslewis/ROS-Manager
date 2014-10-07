@@ -38,6 +38,7 @@
 		FCE2EF0A19BDEFE800B8E354 /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EF0919BDEFE800B8E354 /* OverviewViewController.m */; };
 		FCE2EF1119BF42F600B8E354 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EF1019BF42F600B8E354 /* SettingsViewController.m */; };
 		FCE2EF1519BF609200B8E354 /* WaiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EF1419BF609200B8E354 /* WaiterViewController.m */; };
+		FCED176D19E434B9002C689D /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCED176C19E434B9002C689D /* OrderTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,8 @@
 		FCE2EF1019BF42F600B8E354 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FCE2EF1319BF609200B8E354 /* WaiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaiterViewController.h; sourceTree = "<group>"; };
 		FCE2EF1419BF609200B8E354 /* WaiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaiterViewController.m; sourceTree = "<group>"; };
+		FCED176B19E434B9002C689D /* OrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewCell.h; sourceTree = "<group>"; };
+		FCED176C19E434B9002C689D /* OrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,8 @@
 			children = (
 				FCE2EF0819BDEFE800B8E354 /* OverviewViewController.h */,
 				FCE2EF0919BDEFE800B8E354 /* OverviewViewController.m */,
+				FCED176B19E434B9002C689D /* OrderTableViewCell.h */,
+				FCED176C19E434B9002C689D /* OrderTableViewCell.m */,
 			);
 			name = Overview;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 				FCE2EF1519BF609200B8E354 /* WaiterViewController.m in Sources */,
 				FC91487419D1C338008E1343 /* AddDishViewController.m in Sources */,
 				FC91487A19D42303008E1343 /* DishOptionTableViewCell.m in Sources */,
+				FCED176D19E434B9002C689D /* OrderTableViewCell.m in Sources */,
 				FCE2EF0319BDEECF00B8E354 /* CourseViewController.m in Sources */,
 				FCCF931419DEC2D500C2F3F2 /* UIColor+ApplicationColours.m in Sources */,
 			);
