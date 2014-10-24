@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [_courseNameTextField setPlaceholder:@"course name"];
     [_courseNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [_courseNameTextField setAutocorrectionType:UITextAutocorrectionTypeYes];
     

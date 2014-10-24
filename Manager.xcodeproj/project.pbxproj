@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC35007A19F57E0500A71D8B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC35007719F57E0500A71D8B /* Bolts.framework */; };
+		FC35007B19F57E0500A71D8B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC35007819F57E0500A71D8B /* Parse.framework */; };
+		FC35007C19F57E0500A71D8B /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC35007919F57E0500A71D8B /* ParseFacebookUtils.framework */; };
 		FC91486E19D1B623008E1343 /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91486D19D1B623008E1343 /* AddCourseViewController.m */; };
 		FC91487119D1BBE9008E1343 /* CourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487019D1BBE9008E1343 /* CourseTableViewCell.m */; };
 		FC91487419D1C338008E1343 /* AddDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487319D1C338008E1343 /* AddDishViewController.m */; };
@@ -28,9 +31,6 @@
 		FCE2EEEB19BDED3B00B8E354 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEEA19BDED3B00B8E354 /* Security.framework */; };
 		FCE2EEED19BDED3F00B8E354 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEEC19BDED3F00B8E354 /* StoreKit.framework */; };
 		FCE2EEEF19BDED4700B8E354 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEEE19BDED4700B8E354 /* SystemConfiguration.framework */; };
-		FCE2EEF319BDED5200B8E354 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEF019BDED5200B8E354 /* Bolts.framework */; };
-		FCE2EEF419BDED5200B8E354 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEF119BDED5200B8E354 /* Parse.framework */; };
-		FCE2EEF519BDED5200B8E354 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEF219BDED5200B8E354 /* ParseFacebookUtils.framework */; };
 		FCE2EEF919BDEE5500B8E354 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EEF819BDEE5500B8E354 /* LoginViewController.m */; };
 		FCE2EEFC19BDEE6800B8E354 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EEFB19BDEE6800B8E354 /* SignupViewController.m */; };
 		FCE2EF0319BDEECF00B8E354 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EF0219BDEECF00B8E354 /* CourseViewController.m */; };
@@ -52,6 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC35007719F57E0500A71D8B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		FC35007819F57E0500A71D8B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		FC35007919F57E0500A71D8B /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		FC91486C19D1B623008E1343 /* AddCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCourseViewController.h; sourceTree = "<group>"; };
 		FC91486D19D1B623008E1343 /* AddCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCourseViewController.m; sourceTree = "<group>"; };
 		FC91486F19D1BBE9008E1343 /* CourseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseTableViewCell.h; sourceTree = "<group>"; };
@@ -111,9 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCE2EEF319BDED5200B8E354 /* Bolts.framework in Frameworks */,
-				FCE2EEF419BDED5200B8E354 /* Parse.framework in Frameworks */,
-				FCE2EEF519BDED5200B8E354 /* ParseFacebookUtils.framework in Frameworks */,
 				FCE2EEEF19BDED4700B8E354 /* SystemConfiguration.framework in Frameworks */,
 				FCE2EEED19BDED3F00B8E354 /* StoreKit.framework in Frameworks */,
 				FCE2EEEB19BDED3B00B8E354 /* Security.framework in Frameworks */,
@@ -123,6 +123,9 @@
 				FCE2EEE319BDED2000B8E354 /* CoreGraphics.framework in Frameworks */,
 				FCE2EEE119BDED1A00B8E354 /* CFNetwork.framework in Frameworks */,
 				FCE2EEDF19BDED1500B8E354 /* AudioToolbox.framework in Frameworks */,
+				FC35007A19F57E0500A71D8B /* Bolts.framework in Frameworks */,
+				FC35007B19F57E0500A71D8B /* Parse.framework in Frameworks */,
+				FC35007C19F57E0500A71D8B /* ParseFacebookUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +232,9 @@
 		FCE2EEF619BDED5900B8E354 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC35007719F57E0500A71D8B /* Bolts.framework */,
+				FC35007819F57E0500A71D8B /* Parse.framework */,
+				FC35007919F57E0500A71D8B /* ParseFacebookUtils.framework */,
 				FCE2EEF019BDED5200B8E354 /* Bolts.framework */,
 				FCE2EEF119BDED5200B8E354 /* Parse.framework */,
 				FCE2EEF219BDED5200B8E354 /* ParseFacebookUtils.framework */,
@@ -542,6 +548,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/dylan/Dropbox/Developer/Frameworks/parse-library-1",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Manager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -560,6 +567,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/dylan/Dropbox/Developer/Frameworks/parse-library-1",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Manager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -61,8 +61,8 @@
             // Go through the 'raw' list of orders.
             for (NSDictionary *order in _ordersArray) {
                 // Extract the current item's course.
-                NSString *waiterName=[order valueForKey:@"waiterName"];
-                
+                NSString *waiterName=order[@"waiterName"];
+                                
                 // If we don't already have this waiter, add it.
                 if (![[_ordersByWaiter allKeys] containsObject:waiterName]) {
                     // Create an array containing the current order item object.
@@ -148,13 +148,22 @@
     [cell.itemsDeliveredLabel setHidden:YES];
     
     // Get information about the items ordered.
-    PFQuery *query = [PFQuery queryWithClassName:@"OrderItem"];
-    [query whereKey:@"forOrder" equalTo:order];
-    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+    PFQuery *noOfItemsOrdered = [PFQuery queryWithClassName:@"OrderItem"];
+    [noOfItemsOrdered whereKey:@"forOrder" equalTo:order];
+    [noOfItemsOrdered countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         [cell.itemsOrderedLabel setHidden:NO];
         [cell.itemsDeliveredLabel setHidden:NO];
         
         cell.itemsOrderedLabel.text = [NSString stringWithFormat:@"%d items ordered", number];
+    }];
+    
+    PFQuery *noOfItemsDelivered = [PFQuery queryWithClassName:@"OrderItem"];
+    [noOfItemsDelivered whereKey:@"forOrder" equalTo:order];
+    [noOfItemsDelivered whereKey:@"state" containedIn:@[@"ready", @"collected"]];
+    [noOfItemsDelivered countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        [cell.itemsOrderedLabel setHidden:NO];
+        [cell.itemsDeliveredLabel setHidden:NO];
+        
         cell.itemsDeliveredLabel.text = [NSString stringWithFormat:@"%d items delivered", number];
     }];
     

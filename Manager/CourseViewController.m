@@ -194,6 +194,14 @@
     return query;
 }
 
+#pragma mark - Other
+
+- (PFObject *)sectionedObjectAtIndexPath:(NSIndexPath *)indexPath fromDictionary:(NSDictionary *)dictionary {
+    NSString *keyForSection = [[dictionary allKeys] objectAtIndex:[indexPath section]];
+    
+    return [[dictionary valueForKey:keyForSection] objectAtIndex:[indexPath row]];
+}
+
 #pragma mark - Table view
 
 - (CourseTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
@@ -201,9 +209,7 @@
     
     CourseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    NSString *keyForSection = [[_coursesByType allKeys] objectAtIndex:[indexPath section]];
-    
-    PFObject *course = [[_coursesByType valueForKey:keyForSection] objectAtIndex:[indexPath row]];
+    PFObject *course = [self sectionedObjectAtIndexPath:indexPath fromDictionary:_coursesByType];
     
     // Configure the cell
     cell.courseNameLabel.text = [course objectForKey:@"name"];
@@ -250,7 +256,8 @@
     if ([[segue identifier] isEqualToString:@"dishesForCourseSegue"]) {
         // Retrieve the PFObject from the cell.
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFObject *course=[self objectAtIndexPath:indexPath];
+        
+        PFObject *course = [self sectionedObjectAtIndexPath:indexPath fromDictionary:_coursesByType];
         
         // Pass the PFObject to the next scene.
         [[segue destinationViewController] setCurrentCourse:course];

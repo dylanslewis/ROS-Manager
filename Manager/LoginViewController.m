@@ -32,10 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Set  placeholders.
-    [_usernameField setPlaceholder:@"username"];
-    [_passwordField setPlaceholder:@"password"];
     
     // Fix the keyboard and text entry types.
     [_usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -158,9 +154,7 @@
                                                 PFUser *currentUser = [PFUser currentUser];
                                                 
                                                 if (currentUser) {
-                                                    [self performSegueWithIdentifier:@"loginUser" sender:nil];
-                                                } else {
-                                                    // show the signup or login screen
+                                                    [self performSegueWithIdentifier:@"loginUserSegue" sender:nil];
                                                 }
                                             } else {
                                                 // The login failed.
@@ -227,7 +221,7 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     // This stops the button automatically logging in the user, without checking credentials.
-    if ([identifier isEqualToString:@"loginUser"]) {
+    if ([identifier isEqualToString:@"loginUserSegue"]) {
         return NO;
     }
     return YES;

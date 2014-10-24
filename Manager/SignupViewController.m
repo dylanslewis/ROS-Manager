@@ -31,12 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Set the text field placeholders.
-    [_usernameField setPlaceholder:@"username"];
-    [_passwordField setPlaceholder:@"password"];
-    [_emailField setPlaceholder:@"email address"];
-    [_restaurantField setPlaceholder:@"restaurant name"];
-    
     // Fix the keyboard and text entry types.
     [_usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [_restaurantField setAutocorrectionType:UITextAutocorrectionTypeNo];

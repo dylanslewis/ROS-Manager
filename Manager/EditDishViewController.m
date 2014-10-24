@@ -29,7 +29,6 @@
     
     [self configureOptionsDisplay];
     
-    [_dishPriceTextField setPlaceholder:@"price"];
     [_dishPriceTextField setKeyboardType:UIKeyboardTypeDecimalPad];
     
     _dishNameLabel.text = _currentDish[@"name"];

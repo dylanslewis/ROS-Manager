@@ -29,7 +29,6 @@
     [_dishNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [_dishNameTextField setAutocorrectionType:UITextAutocorrectionTypeYes];
     
-    [_dishPriceTextField setPlaceholder:@"price"];
     [_dishPriceTextField setKeyboardType:UIKeyboardTypeDecimalPad];
     
     // Initially hide the options information.
