@@ -8,12 +8,15 @@
 
 #import "OverviewViewController.h"
 #import "OrderTableViewCell.h"
+#import "ViewOrderViewController.h"
 #import "UIColor+ApplicationColours.h"
 
 @interface OverviewViewController ()
 
 @property (strong, nonatomic) NSArray *ordersArray;
 @property (strong, nonatomic) NSMutableDictionary *ordersByWaiter;
+
+@property (strong, nonatomic) PFObject *currentOrder;
 
 @end
 
@@ -90,6 +93,12 @@
     return [_ordersByWaiter count];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    _currentOrder = [self sectionedObjectAtIndexPath:indexPath fromDictionary:_ordersByWaiter];
+
+    [self performSegueWithIdentifier:@"showOrderSegue" sender:nil];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Get the key for this section from the dictionary.
     NSString *key = [[_ordersByWaiter allKeys] objectAtIndex:section];
@@ -134,9 +143,8 @@
 - (OrderTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"orderCell";
     
-    NSString *keyForSection = [[_ordersByWaiter allKeys] objectAtIndex:[indexPath section]];
-    
-    PFObject *order = [[_ordersByWaiter valueForKey:keyForSection] objectAtIndex:[indexPath row]];
+    // Extract the name of this section by looking in the Dictionary's keys.
+    PFObject *order = [self sectionedObjectAtIndexPath:indexPath fromDictionary:_ordersByWaiter];
     
     OrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -172,22 +180,29 @@
     return cell;
 }
 
+#pragma mark - Other
+
+- (PFObject *)sectionedObjectAtIndexPath:(NSIndexPath *)indexPath fromDictionary:(NSDictionary *)dictionary {
+    NSString *keyForSection = [[dictionary allKeys] objectAtIndex:[indexPath section]];
+    
+    return [[dictionary valueForKey:keyForSection] objectAtIndex:[indexPath row]];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"segue"]) {
-        // Retrieve the PFObject from the cell.
-        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        //PFObject *currentObject=[self objectAtIndexPath:indexPath];
-        
+    if ([[segue identifier] isEqualToString:@"showOrderSegue"]) {
         // Pass the PFObject to the next scene.
-        //[[segue destinationViewController] setCurrentObject:currentObject];
+        ViewOrderViewController *vc = (ViewOrderViewController *)[segue destinationViewController];        
+        [vc setCurrentOrder:_currentOrder];
     }
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     // This stops the button automatically logging out the user, without checking confirmation.
     if ([identifier isEqualToString:@"logoutUserSegue"]) {
+        return NO;
+    } else if ([identifier isEqualToString:@"showOrderSegue"]) {
         return NO;
     }
     return YES;

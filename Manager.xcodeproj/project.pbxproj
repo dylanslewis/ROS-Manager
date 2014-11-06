@@ -10,6 +10,8 @@
 		FC35007A19F57E0500A71D8B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC35007719F57E0500A71D8B /* Bolts.framework */; };
 		FC35007B19F57E0500A71D8B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC35007819F57E0500A71D8B /* Parse.framework */; };
 		FC35007C19F57E0500A71D8B /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC35007919F57E0500A71D8B /* ParseFacebookUtils.framework */; };
+		FC47A3301A0B9254002F7D7D /* ViewOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC47A32D1A0B9254002F7D7D /* ViewOrderViewController.m */; };
+		FC47A3311A0B9254002F7D7D /* OrderItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC47A32F1A0B9254002F7D7D /* OrderItemTableViewCell.m */; };
 		FC91486E19D1B623008E1343 /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91486D19D1B623008E1343 /* AddCourseViewController.m */; };
 		FC91487119D1BBE9008E1343 /* CourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487019D1BBE9008E1343 /* CourseTableViewCell.m */; };
 		FC91487419D1C338008E1343 /* AddDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487319D1C338008E1343 /* AddDishViewController.m */; };
@@ -55,6 +57,10 @@
 		FC35007719F57E0500A71D8B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		FC35007819F57E0500A71D8B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		FC35007919F57E0500A71D8B /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		FC47A32C1A0B9254002F7D7D /* ViewOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOrderViewController.h; sourceTree = "<group>"; };
+		FC47A32D1A0B9254002F7D7D /* ViewOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewOrderViewController.m; sourceTree = "<group>"; };
+		FC47A32E1A0B9254002F7D7D /* OrderItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderItemTableViewCell.h; sourceTree = "<group>"; };
+		FC47A32F1A0B9254002F7D7D /* OrderItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderItemTableViewCell.m; sourceTree = "<group>"; };
 		FC91486C19D1B623008E1343 /* AddCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCourseViewController.h; sourceTree = "<group>"; };
 		FC91486D19D1B623008E1343 /* AddCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCourseViewController.m; sourceTree = "<group>"; };
 		FC91486F19D1BBE9008E1343 /* CourseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseTableViewCell.h; sourceTree = "<group>"; };
@@ -139,6 +145,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC47A3321A0B925B002F7D7D /* View Order */ = {
+			isa = PBXGroup;
+			children = (
+				FC47A32C1A0B9254002F7D7D /* ViewOrderViewController.h */,
+				FC47A32D1A0B9254002F7D7D /* ViewOrderViewController.m */,
+				FC47A32E1A0B9254002F7D7D /* OrderItemTableViewCell.h */,
+				FC47A32F1A0B9254002F7D7D /* OrderItemTableViewCell.m */,
+			);
+			name = "View Order";
+			sourceTree = "<group>";
+		};
 		FC91487B19D42312008E1343 /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +314,7 @@
 				FCE2EF0919BDEFE800B8E354 /* OverviewViewController.m */,
 				FCED176B19E434B9002C689D /* OrderTableViewCell.h */,
 				FCED176C19E434B9002C689D /* OrderTableViewCell.m */,
+				FC47A3321A0B925B002F7D7D /* View Order */,
 			);
 			name = Overview;
 			sourceTree = "<group>";
@@ -414,6 +432,7 @@
 			files = (
 				FCAE169C19E2C320002C698F /* EditDishViewController.m in Sources */,
 				FCE2EEC119BDEC0100B8E354 /* AppDelegate.m in Sources */,
+				FC47A3301A0B9254002F7D7D /* ViewOrderViewController.m in Sources */,
 				FC91486E19D1B623008E1343 /* AddCourseViewController.m in Sources */,
 				FCE2EF0A19BDEFE800B8E354 /* OverviewViewController.m in Sources */,
 				FCE2EEBE19BDEC0100B8E354 /* main.m in Sources */,
@@ -428,6 +447,7 @@
 				FC91487A19D42303008E1343 /* DishOptionTableViewCell.m in Sources */,
 				FCED176D19E434B9002C689D /* OrderTableViewCell.m in Sources */,
 				FCE2EF0319BDEECF00B8E354 /* CourseViewController.m in Sources */,
+				FC47A3311A0B9254002F7D7D /* OrderItemTableViewCell.m in Sources */,
 				FCCF931419DEC2D500C2F3F2 /* UIColor+ApplicationColours.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
