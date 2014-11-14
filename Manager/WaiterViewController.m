@@ -99,7 +99,7 @@
 #pragma mark - Parse
 
 - (void)createNewWaiterWithFirstName:(NSString *)firstName withSurname:(NSString *)surname {
-    PFObject *object = [PFObject objectWithClassName:self.parseClassName];
+    PFObject *object = [PFObject objectWithClassName:@"Waiter"];
     object[@"firstName"]=firstName;
     object[@"surname"]=surname;
     

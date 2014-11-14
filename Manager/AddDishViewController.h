@@ -17,4 +17,8 @@
 
 @property (strong, nonatomic) PFObject *currentDish;
 
+- (void)createNewDishWithName:(NSString *)name withOptions:(NSDictionary *)option;
+
+- (void)createNewBasicDishWithName:(NSString *)name withPrice:(NSNumber *)price;
+
 @end

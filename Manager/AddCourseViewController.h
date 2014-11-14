@@ -10,4 +10,6 @@
 
 @interface AddCourseViewController : UIViewController
 
+- (void)createNewCourseWithName:(NSString *)name withType:(NSString *)type;
+
 @end

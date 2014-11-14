@@ -10,4 +10,6 @@
 
 @interface WaiterViewController : PFQueryTableViewController
 
+- (void)createNewWaiterWithFirstName:(NSString *)firstName withSurname:(NSString *)surname;
+
 @end

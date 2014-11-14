@@ -18,6 +18,18 @@
 		FC91487719D1C3D4008E1343 /* DishTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487619D1C3D4008E1343 /* DishTableViewCell.m */; };
 		FC91487A19D42303008E1343 /* DishOptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91487919D42303008E1343 /* DishOptionTableViewCell.m */; };
 		FCAE169C19E2C320002C698F /* EditDishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE169B19E2C320002C698F /* EditDishViewController.m */; };
+		FCB367591A0BABDC00947A3F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEF019BDED5200B8E354 /* Bolts.framework */; };
+		FCB3675A1A0BABDC00947A3F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEF119BDED5200B8E354 /* Parse.framework */; };
+		FCB3675B1A0BABDC00947A3F /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEF219BDED5200B8E354 /* ParseFacebookUtils.framework */; };
+		FCB3675C1A0BABDC00947A3F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEEE19BDED4700B8E354 /* SystemConfiguration.framework */; };
+		FCB3675D1A0BABDC00947A3F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEEC19BDED3F00B8E354 /* StoreKit.framework */; };
+		FCB3675E1A0BABDC00947A3F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEEA19BDED3B00B8E354 /* Security.framework */; };
+		FCB3675F1A0BABDC00947A3F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEE819BDED3400B8E354 /* QuartzCore.framework */; };
+		FCB367601A0BABDC00947A3F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEE619BDED3000B8E354 /* MobileCoreServices.framework */; };
+		FCB367611A0BABDC00947A3F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEE419BDED2400B8E354 /* CoreLocation.framework */; };
+		FCB367621A0BABDC00947A3F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEE219BDED2000B8E354 /* CoreGraphics.framework */; };
+		FCB367631A0BABDC00947A3F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEE019BDED1A00B8E354 /* CFNetwork.framework */; };
+		FCB367641A0BABDC00947A3F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE2EEDE19BDED1500B8E354 /* AudioToolbox.framework */; };
 		FCCF931419DEC2D500C2F3F2 /* UIColor+ApplicationColours.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCF931319DEC2D500C2F3F2 /* UIColor+ApplicationColours.m */; };
 		FCE2EEBE19BDEC0100B8E354 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EEBD19BDEC0100B8E354 /* main.m */; };
 		FCE2EEC119BDEC0100B8E354 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2EEC019BDEC0100B8E354 /* AppDelegate.m */; };
@@ -139,6 +151,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB367591A0BABDC00947A3F /* Bolts.framework in Frameworks */,
+				FCB3675A1A0BABDC00947A3F /* Parse.framework in Frameworks */,
+				FCB3675B1A0BABDC00947A3F /* ParseFacebookUtils.framework in Frameworks */,
+				FCB3675C1A0BABDC00947A3F /* SystemConfiguration.framework in Frameworks */,
+				FCB3675D1A0BABDC00947A3F /* StoreKit.framework in Frameworks */,
+				FCB3675E1A0BABDC00947A3F /* Security.framework in Frameworks */,
+				FCB3675F1A0BABDC00947A3F /* QuartzCore.framework in Frameworks */,
+				FCB367601A0BABDC00947A3F /* MobileCoreServices.framework in Frameworks */,
+				FCB367611A0BABDC00947A3F /* CoreLocation.framework in Frameworks */,
+				FCB367621A0BABDC00947A3F /* CoreGraphics.framework in Frameworks */,
+				FCB367631A0BABDC00947A3F /* CFNetwork.framework in Frameworks */,
+				FCB367641A0BABDC00947A3F /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +627,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/dylan/Dropbox/Developer/Frameworks/parse-library-1",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -622,6 +648,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/dylan/Dropbox/Developer/Frameworks/parse-library-1",
 				);
 				INFOPLIST_FILE = ManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
