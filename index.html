@@ -29,23 +29,75 @@
       </header>
       <section>
         <h1>
-<a id="ros-manager" class="anchor" href="#ros-manager" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROS-Manager</h1>
+<a id="manager" class="anchor" href="#manager" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manager</h1>
 
-<p>This app is designed to work alongside Waiter and Kitchen, as part of the Restaurant Ordering System app suite.</p>
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p>This app currently has limited functionality, including:</p>
+<p>This App is part of the Restaurant Ordering System, and is designed to work alongside <a href="http://dylanslewis.github.io/ROS-Waiter/">Waiter</a> and <a href="http://dylanslewis.github.io/ROS-Kitchen/">Kitchen</a>. </p>
+
+<h2>
+<a id="current-functionality" class="anchor" href="#current-functionality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Current functionality</h2>
+
+<p>Manager currently only has core functionality and is still in development. However, the current version provides the following functionality:</p>
+
+<h3>
+<a id="login-and-signup" class="anchor" href="#login-and-signup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Login and Signup</h3>
+
+<p><img src="http://i57.tinypic.com/2zyejau.png" align="center" height="445" width="250"></p>
+
+<p>Restaurants can signup to the system within the app, and then login.</p>
+
+<h3>
+<a id="menu" class="anchor" href="#menu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Menu</h3>
+
+<p><img src="http://i57.tinypic.com/dg0y6e.png" align="center" height="445" width="250"></p>
+
+<p>Courses are divided into two types: food and drink. This is used to direct orders of these items to the correct areas of the restaurant. Navigating and creating the menu is simple and familiar to iOS users.</p>
+
+<h3>
+<a id="dish-options" class="anchor" href="#dish-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dish options</h3>
+
+<p><img src="http://i62.tinypic.com/2unu1op.png" align="center" height="445" width="250"></p>
+
+<p>Ordering a dish from a menu needs to be flexible, as not all customers want their food exactly the same. Dish options allow managers to ensure vital information is provided for orders, such as <em>Rare</em>, <em>Medium Rare</em> or <em>Well Done</em> steaks, or <em>125ml</em>, <em>200ml</em> or <em>Bottle</em> sizes for ordering wine. The options' functionality will later be extended to cover entire courses and to allow more complicated customisations of dishes.</p>
+
+<h3>
+<a id="managing-current-orders" class="anchor" href="#managing-current-orders" aria-hidden="true"><span class="octicon octicon-link"></span></a>Managing current orders</h3>
+
+<p><img src="http://i57.tinypic.com/2yvjnkx.png" align="center" height="445" width="250"></p>
+
+<p>Managers want to have access to everything that is currently happening in the restaurant, and the Overview page lets them see all open orders, grouped by their waiter. Future functionality will allow a more visual approach to this problem, and will enable managers to accept discounts before they are applied to orders, putting them in full control of their restaurant.</p>
+
+<h2>
+<a id="known-issues" class="anchor" href="#known-issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Known issues</h2>
+
+<p>The app has the following known issues:  </p>
 
 <ul>
-<li>ability to create a restaurant username and login to that restaurant</li>
-<li>ability to manage waiters</li>
-<li>ability to create a menu</li>
-<li>specify types of courses as Food or Drink</li>
-<li>grouping of course types</li>
-<li>ability to add options to dishes</li>
-<li>ability to edit dishes</li>
+<li>unexpected crashes may occur as a result of heavy memory usage, which will be resolved in future iterations;<br>
+</li>
+<li>fonts may not appear correctly at first throughout the app;<br>
+</li>
+<li>the Reports page currently has no functionality;</li>
+<li>scenes do not always refresh their data after the user's action, and may require navigating away from and back to the page;</li>
+<li>Export Menu currently has no functionality;</li>
+<li>Currency values are not currently truncated to two decimal places.</li>
 </ul>
 
-<p>This app has only been tested on an iPhone 6. Unexpected issues may occur when testing on any other iOS device.</p>
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<p>If you want to download and explore the App, please submit a pull request and use the following login credentials to view an account with pre-loaded data:<br>
+username: <em>tester</em><br>
+password: <em>password</em></p>
+
+<p><em>Please note that Manager has only been designed to work on an iPhone 6 running iOS 8, currently. It will run on other devices running iOS 8, but you may experience layout issues.</em></p>
+
+<h2>
+<a id="future-work" class="anchor" href="#future-work" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future work</h2>
+
+<p>The Restaurant Ordering System is an ongoing project. Now that simple functionality has been implemented, the developer is working on enhancing the experience for chefs, and to cover less common use cases.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/dylanslewis">dylanslewis</a></p>
